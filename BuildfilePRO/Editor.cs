@@ -917,7 +917,7 @@ namespace BuildfilePRO
             classSkillComboBox.Items.Add("None");
             characterSkillComboBox.Items.Add("None");
             itemSkillComboBox.Items.Add("None");
-            LinkedList<string> skillList = GetAllSkills();
+            var skillList = GetAllSkills();
             foreach (string skill in skillList)
             {
                 classSkillComboBox.Items.Add(skill);
@@ -1501,7 +1501,6 @@ namespace BuildfilePRO
             }
 
             StreamReader skillDefs = new StreamReader(GetSkillDefinitions());
-            LinkedList<string> skillList = new LinkedList<string>();
 
             string nextLine;
 
@@ -2164,10 +2163,10 @@ namespace BuildfilePRO
             }
         }
 
-        public LinkedList<string> GetAllSkills()
+        public SortedSet<string> GetAllSkills() // QoL: Skills are now sorted by name
         {
             StreamReader skillDefs = new StreamReader(GetSkillDefinitions());
-            LinkedList<string> skillList = new LinkedList<string>();
+            SortedSet<string> skillList = new SortedSet<string>();
 
             string nextLine;
 
@@ -2176,7 +2175,7 @@ namespace BuildfilePRO
                 string[] checkLine = nextLine.Split(' ');
                 if (checkLine[0].Equals("#define") && (checkLine[2].Equals("255") != true))
                 {
-                    skillList.AddLast(checkLine[1].Substring(0, checkLine[1].Length - 2));
+                    skillList.Add(checkLine[1].Substring(0, checkLine[1].Length - 2));
                 }
             }
 

@@ -102,7 +102,7 @@ namespace BuildfilePRO
 
         public void PopulateSkillComboBox()
         {
-            LinkedList<string> skillList = editor.GetAllSkills();
+            var skillList = editor.GetAllSkills();
             foreach (string skill in skillList)
             {
                 selectedSkill.Items.Add(skill);

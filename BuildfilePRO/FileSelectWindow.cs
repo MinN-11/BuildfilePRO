@@ -55,7 +55,8 @@ namespace BuildfilePRO
                 }
 
             }
-            else
+            else if (result == DialogResult.Cancel) {} // QoL: clicking browse then cancel doesn't remove the path or the ability to click go
+            else 
             {
                 fileText.Text = "Invalid directory.";
                 advanceWindow.Enabled = false;
