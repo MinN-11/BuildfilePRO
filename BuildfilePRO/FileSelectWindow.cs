@@ -24,10 +24,18 @@ namespace BuildfilePRO
 
         private void CheckForSettings()
         {
-            if (Properties.Settings.Default["LastFolder"] != null && Directory.Exists(Properties.Settings.Default["LastFolder"].ToString()))
-            {
+            if (Properties.Settings.Default["LastFolder"] != null && Directory.Exists(Properties.Settings.Default["LastFolder"].ToString())) {
                 fileText.Text = Properties.Settings.Default["LastFolder"].ToString();
                 advanceWindow.Enabled = true;
+                advanceWindow.Select();
+            } else {
+                var cwd = Directory.GetCurrentDirectory();
+                Console.WriteLine(cwd);
+                if (IsBuildfileFolder(Directory.GetFiles(cwd))) {
+                    fileText.Text = cwd;
+                    advanceWindow.Enabled = true;
+                    advanceWindow.Select();
+                }
             }
         }
 
