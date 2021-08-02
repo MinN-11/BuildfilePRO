@@ -2173,7 +2173,7 @@ namespace BuildfilePRO
             while ((nextLine = skillDefs.ReadLine()) != null)
             {
                 string[] checkLine = nextLine.Split(' ');
-                if (checkLine[0].Equals("#define") && (checkLine[2].Equals("255") != true))
+                if (checkLine[0].Equals("#define") && (!checkLine[2].Equals("255") || !int.TryParse(checkLine[2], out int i)))
                 {
                     skillList.Add(checkLine[1].Substring(0, checkLine[1].Length - 2));
                 }
